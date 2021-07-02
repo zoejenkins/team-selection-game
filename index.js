@@ -2,49 +2,54 @@
 //Zoe Jenkins
 //22/06/2021
 
-//list of players waiting to be added to team
+//list of players waiting to be picked
 players = ['Bill', 'Jill', 'Lilly', 'Ella', 'Bella', 'Holly', 'Molly', 'Milly', 'Will', 'Kelly', 'Ally', 'Sally', 'Bell']
 
-//empty teams waiting for players to be added
+//asks user how many players they want in each team
+ let teams = prompt('How many players do you want in each team?')
+
+//sets the value limits and gets the user to pick a valid value if they pick an invalid value
+    while (teams > (players.length/2)||isNaN(teams)||teams == ' '||teams == null){
+      console.log('This number is not at option. Please enter a number between 1-6')
+      teams = prompt('How many players do you want in each team?')  }
+
+//makes an empty list called team1
 let team1 = [];
+//makes an empty list called team2
 let team2 = [];
 
-//set beginning number for the variable: round
+//sets starting length of variable round
 let round = 1;
-//set beginning number for the variable: length
-let length = 13;
+//sets starting length of variable length
+let length = (teams * 2);
 
-//start loop
+//starts loop
 do{
-//pick random player
+//random pick
+//picks random player from list for team 1
 let player1 = Math.floor(Math.random() * length + 0);
-//sets player's name to their variable number
+//changes the chosen players name from a number variable to a name
 let player1Name = players[player1];
-//shows the players name on screen
-  console.log(player1Name);
-//removes player1 from the rest of the players
+//takes the player out of the players list
 players.splice(player1, 1);
-//shows the rest of the players on screen
-  console.log(players);
-//shows the players name and the team they are in on screen
-console.log('Team 1: ' + player1Name)
-//puts player into the new list 'team1'
+//puts the player into the list team1
 team1.push(player1Name)
 
+//adds one to the round
     round++
+//taking one from the length
     length--
-//repeat the steps above for team 2
+
+//does the same random pick for team 2
 let player2 = Math.floor(Math.random() * length + 0);
 let player2Name = players[player2];
-  console.log(player2Name);
 players.splice(player2, 1);
-  console.log(players);
-  console.log('Team 2: ' + player2Name)
 team2.push(player2Name)
     round++
     length-- 
-//end loop and
-} while (round <= 12)
-//show final teams on screen
-console.log('Team 1 is ' + team1)
-console.log('Team 2 is ' + team2)
+
+//setting the conditions the loop will run for
+} while (round <= teams * 2)
+ //printing the complete list of members in the team
+console.log('Team 1 is: ' + team1)
+console.log('Team 2 is: ' + team2)
